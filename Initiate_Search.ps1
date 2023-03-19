@@ -16,7 +16,11 @@ Set-Location $path
 # Prompt the user for input
 $googleQuery = Read-Host "What Are We Googl-ing This Time?"
 $googleException = Read-Host "Are there URLs or Specific Words do I need to Avoid Clicking On?"
+$count = Read-Host "Please enter the number of times to run this search and click on the links"
+$count = [int]$count
 .\env\Scripts\activate
 $command = "python ad_clicker.py -q `"$googleQuery`" -e `"$googleException`" -t 10"
-Invoke-Expression $command
+for ($i = 1; $i -le $count; $i++) {
+    Invoke-Expression $command
+}
 #python ad_clicker.py -q "Houses for sale in arlington texas" -e "christineballardrealestate.com" -t 10
